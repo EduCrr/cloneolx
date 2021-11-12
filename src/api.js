@@ -5,6 +5,26 @@ const api = axios.create({
 });
 
 export default {
+  getUser: async (token) => {
+    let { data: json } = await api.get(`/user/me?token=${token}`);
+
+    return json;
+  },
+
+  updateUser: async (token, name, estado, password) => {
+    let { data: json } = await api.put("/user/me", {
+      token,
+      name,
+      state: estado,
+      password,
+    });
+    if (json.notallowed) {
+      window.location.href = "/";
+      return;
+    }
+    return json;
+  },
+
   getLogin: async (email, password) => {
     let { data: json } = await api.post(`/user/signin`, {
       email,

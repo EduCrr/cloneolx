@@ -9,6 +9,7 @@ import AdPage from "./Pages/AdPage";
 import RouteHandlder from "./components/RouteHandler";
 import AddAd from "./Pages/AddAd";
 import Ads from "./Pages/Ads";
+import MyAccount from "./Pages/MyAccount";
 export default function Routes() {
   return (
     <Switch>
@@ -32,6 +33,9 @@ export default function Routes() {
       </RouteHandlder>
       <RouteHandlder exact path="/ads">
         <Ads />
+      </RouteHandlder>
+      <RouteHandlder private exact path="/user">
+        <MyAccount />
       </RouteHandlder>
       <RouteHandlder>
         <NotFound />

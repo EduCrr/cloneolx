@@ -13,7 +13,13 @@ export default function Sliders({ data }) {
     <SliderArea>
       <div className="slideContent">
         <div className="imgHover">
-          <img src={data.image} />
+          <img
+            src={
+              data.image === "http://alunos.b7web.com.br:501/media/default.jpg"
+                ? "/assets/drone.jpg"
+                : data.image
+            }
+          />
           <div className="middle">
             <div className="text">
               <Link to={`/ad/${data.id}`}>Veja Mais</Link>

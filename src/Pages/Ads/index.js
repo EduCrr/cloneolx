@@ -181,7 +181,15 @@ export default function Ads() {
                 {ads.map((item, k) => (
                   <div key={k} className="slideContent">
                     <div className="imgHover">
-                      <img src={item.image} />
+                      <img
+                        src={
+                          item.image ===
+                          "http://alunos.b7web.com.br:501/media/default.jpg"
+                            ? "/assets/drone.jpg"
+                            : item.image
+                        }
+                      />
+
                       <div className="middle">
                         <div className="text">
                           <Link to={`/ad/${item.id}`}>Veja Mais</Link>

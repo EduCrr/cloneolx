@@ -65,7 +65,12 @@ export default function Header() {
                   {state.user.token && (
                     <>
                       <li>
-                        <FaUserAlt />
+                        <Link to="/user">
+                          <FaUserAlt />
+                          <span style={{ margin: "0px 10px" }}>
+                            {state.user.name}
+                          </span>
+                        </Link>
                       </li>
                       <li>
                         <Link to="/post-an-ad">Postar Anúncio</Link>

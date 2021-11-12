@@ -13,6 +13,7 @@ export default function Login() {
   const [error, setError] = useState("");
   const [state, dispatch] = useStateValue();
   async function handleSubmit(e) {
+    let token = "";
     e.preventDefault();
     setLoading(true);
     setError("");
@@ -20,6 +21,7 @@ export default function Login() {
     if (json.error !== "") {
       setError(json.error);
       setLoading(false);
+      return;
     } else {
       dispatch({
         type: "setToken",
@@ -29,14 +31,28 @@ export default function Login() {
         type: "setRemember",
         rememberPassword,
       });
-      dispatch({
-        type: "setEmail",
-        email,
-      });
-      console.log(json);
+      token += json.token;
       setError(false);
-      window.location.href = "/";
     }
+
+    const userInfo = await api.getUser(token);
+    if (userInfo.error !== "") {
+      setError(userInfo.error);
+      setLoading(false);
+    }
+    dispatch({
+      type: "setName",
+      name: userInfo.name,
+    });
+    dispatch({
+      type: "setEmail",
+      email: userInfo.email,
+    });
+    dispatch({
+      type: "setEstado",
+      estado: userInfo.state,
+    });
+    window.location.href = "/";
   }
 
   return (
