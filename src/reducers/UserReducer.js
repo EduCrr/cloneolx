@@ -2,6 +2,8 @@ const initialState = {
   email: "",
   name: "",
   token: "",
+  estado: "",
+  rememberPassword: false,
 };
 
 export default function UserReducer(state = initialState, action = {}) {
@@ -14,6 +16,14 @@ export default function UserReducer(state = initialState, action = {}) {
       break;
     case "setToken":
       return { ...state, token: action.token };
+      break;
+
+    case "setRemember":
+      return { ...state, rememberPassword: action.rememberPassword };
+      break;
+
+    case "setEstado":
+      return { ...state, estado: action.estado };
       break;
   }
   return state;

@@ -1,34 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import { HeaderArea, Menu } from "./styled";
 import { Link } from "react-router-dom";
 import { FaAlignRight, FaUserAlt } from "react-icons/fa";
 import { MdClear } from "react-icons/md";
 import { useStateValue } from "../../contexts/StateContext";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import api from "../../api";
+
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
   const [state, dispatch] = useStateValue();
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    async function loadCategories() {
+      const cats = await api.getCategories();
+      setCategories(cats);
+    }
+    loadCategories();
+  }, []);
 
   function handleMenu() {
     setOpenMenu(!openMenu);
   }
-
-  const settings = {
-    dots: true,
-    infinite: true,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    speed: 1500,
-    className: "slider",
-    fade: true,
-    autoplaySpeed: 4000,
-    cssEase: "linear",
-  };
-
+  function handleLogout() {
+    dispatch({
+      type: "setToken",
+      token: "",
+    });
+    dispatch({
+      type: "setEmail",
+      email: "",
+    });
+    dispatch({
+      type: "setName",
+      name: "",
+    });
+    window.location.href = "/";
+  }
   return (
     <HeaderArea>
       <Container>
@@ -59,10 +68,10 @@ export default function Header() {
                         <FaUserAlt />
                       </li>
                       <li>
-                        <Link to="/">Postar Anúncio</Link>
+                        <Link to="/post-an-ad">Postar Anúncio</Link>
                       </li>
                       <li>
-                        <Link to="/">Sair</Link>
+                        <button onClick={handleLogout}>Sair</button>
                       </li>
                       <li>
                         <FaAlignRight onClick={handleMenu} />
@@ -79,46 +88,21 @@ export default function Header() {
               width: openMenu ? "30vw" : "0",
             }}
           >
-            <div className="topArea">
-              <h4>Categorias</h4>
-              <MdClear size="22" onClick={handleMenu} />
-            </div>
-            <div className="MenuArea">
-              <MdClear />
-              <Link to="/">Telefone</Link>
-            </div>
-            <div className="MenuArea">
-              <MdClear />
-              <Link to="/">Telefone</Link>
-            </div>
-            <div className="MenuArea">
-              <MdClear />
-              <Link to="/">Telefone</Link>
-            </div>
-            <div className="MenuArea">
-              <MdClear />
-              <Link to="/">Telefone</Link>
-            </div>
-            <div className="MenuArea">
-              <MdClear />
-              <Link to="/">Telefone</Link>
-            </div>
+            <>
+              <div className="topArea">
+                <h4>Categorias</h4>
+                <MdClear size="22" onClick={handleMenu} />
+              </div>
+              {categories.map((item, k) => (
+                <div className="MenuArea" key={k}>
+                  <img src={item.img} alt={item.name} />
+                  <a href={`/ads?cat=${item.slug}`}>{item.name}</a>
+                </div>
+              ))}
+            </>
           </Menu>
         </Row>
       </Container>
-      <div>
-        <Slider {...settings}>
-          <div>
-            <img src="/assets/fundo1.jpg" alt="a" />
-          </div>
-          <div>
-            <img src="/assets/fundo2.jpg" alt="a" />
-          </div>
-          <div>
-            <img src="/assets/fundo3.jpg" alt="a" />
-          </div>
-        </Slider>
-      </div>
     </HeaderArea>
   );
 }

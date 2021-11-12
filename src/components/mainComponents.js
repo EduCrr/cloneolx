@@ -6,44 +6,13 @@ export const ContainerArea = styled.div`
     color: #292929;
     font-weight: 500;
   }
-  button {
-    cursor: pointer;
-  }
+
   svg {
     cursor: pointer;
-  }
-  .slideContent {
-    img {
-      border-radius: 6px;
-      margin: auto;
-      height: 300px;
-      width: 100%;
-      object-fit: cover;
-      margin-bottom: 20px;
-    }
-    h3,
-    p {
-    }
-  }
-  .slick-next {
-    right: -50px;
-    margin: 0px 20px;
-  }
-  .slick-prev {
-    left: -50px;
-    z-index: 1000;
-    margin: 0px 20px;
   }
   .slick-prev:before,
   .slick-next:before {
     color: #999;
-  }
-  .imgHover {
-    border-radius: 6px;
-    position: relative;
-    width: inherit;
-    background-color: #c6e9e3;
-    transition: 0.7s ease;
   }
   .middle {
     transition: 0.7s ease;
@@ -54,6 +23,10 @@ export const ContainerArea = styled.div`
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     text-align: center;
+
+    a {
+      color: white;
+    }
   }
 
   .imgHover:hover img {
@@ -64,6 +37,30 @@ export const ContainerArea = styled.div`
     opacity: 1;
   }
 
+  .slideContent {
+    height: 450px;
+    text-align: center;
+    img {
+      border-radius: 6px;
+      margin: auto;
+      height: 300px;
+      width: 100%;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+    h6 {
+      font-weight: bold;
+    }
+    .imgHover {
+      border-radius: 6px;
+      position: relative;
+      width: inherit;
+      background: linear-gradient(to bottom right, #55c57a, #7ed56f);
+
+      transition: 0.7s ease;
+    }
+  }
+
   .text {
     border-radius: 50px;
     border: 2px solid white;
@@ -71,9 +68,8 @@ export const ContainerArea = styled.div`
     color: white;
     font-weight: bold;
     font-size: 16px;
-    padding: 16px 32px;
+    padding: 16px 25px;
     cursor: pointer;
-    text-transform: uppercase;
   }
 
   .text:hover {
@@ -92,4 +88,64 @@ export const ContainerArea = styled.div`
       text-transform: uppercase;
     }
   }
+
+  .login_Register_Form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    input,
+    select,
+    textarea {
+      border-radius: 6px;
+      transition: all ease 0.4s;
+      padding: 10px;
+      width: 400px;
+      margin-bottom: 30px;
+      border: none;
+      border-bottom: 1px solid #eee;
+      outline: 0;
+      font-weight: 500;
+    }
+
+    input[type="checkbox"] {
+      width: 50px;
+    }
+    button {
+      cursor: pointer;
+      border-radius: 50px;
+      color: white;
+      background: linear-gradient(to bottom right, #55c57a, #7ed56f);
+      font-weight: bold;
+      font-size: 16px;
+      padding: 16px 32px;
+      cursor: pointer;
+      border: none;
+    }
+  }
+  .rowSapce,
+  .slideContent {
+    padding: 0px 5px;
+  }
+  .space {
+    margin-top: 6rem;
+  }
+  a.buttonSlider {
+    border-radius: 50px;
+    color: white;
+    background: linear-gradient(to bottom right, #55c57a, #7ed56f);
+    font-weight: bold;
+    font-size: 16px;
+    padding: 16px 32px;
+    cursor: pointer;
+    border: none;
+  }
+`;
+export const ErrorMsg = styled.div`
+  margin: 10px;
+  font-weight: bold;
+  color: #292929;
+  background-color: #ffcaca;
+  border: 2px solid red;
+  padding: 5px;
+  margin-bottom: 20px;
 `;

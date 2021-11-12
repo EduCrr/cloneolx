@@ -1,12 +1,28 @@
 import styled from "styled-components";
 
-export const HomeArea = styled.div``;
+export const HomeArea = styled.div`
+  .slider {
+    img {
+      width: 100%;
+      height: 90vh;
+      object-fit: cover;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    .slick-next {
+      right: 0px;
+      margin: 0px 20px;
+    }
+    .slick-prev {
+      left: 0px;
+      z-index: 1000;
+      margin: 0px 20px;
+    }
+  }
+`;
 export const SliderArea = styled.div`
   padding-top: 5rem;
-  .rowSapce,
-  .slideContent {
-    padding: 0px 5px;
-  }
 `;
 export const Gallery = styled.div`
   padding-top: 5rem;
@@ -57,10 +73,11 @@ export const Gallery = styled.div`
       margin-bottom: 40px;
     }
     a {
+      margin-top: 20px;
       border-radius: 50px;
       background-color: none;
       color: white;
-      background-color: #292929;
+      background: linear-gradient(to bottom right, #55c57a, #7ed56f);
       font-weight: bold;
       font-size: 16px;
       padding: 16px 32px;

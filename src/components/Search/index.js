@@ -1,30 +1,46 @@
-import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Container, Row } from "react-bootstrap";
 import { SearchArea } from "./styled";
 import { FaUserAlt } from "react-icons/fa";
-
+import api from "../../api";
 export default function Search() {
+  const [listaEstado, setListaEstado] = useState([]);
+
+  useEffect(() => {
+    async function loadStates() {
+      const list = await api.getlist();
+      setListaEstado(list.states);
+    }
+    loadStates();
+  }, []);
+
   return (
     <SearchArea>
       <Container>
         <Row>
-          <form>
-            <Col md>
-              <input id="searchinput" type="search" placeholder="Buscar" />
+          <div className="searchBox">
+            <form method="GET" action={`/ads`}>
+              <input
+                id="searchinput"
+                name="q"
+                type="search"
+                placeholder="Buscar"
+              />
               <span
                 id="searchclear"
                 className="glyphicon glyphicon-remove-circle"
               ></span>
-            </Col>
-            <Col md>
-              <select>
-                <option>Selecione algum estado</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+              <select name="state">
+                {listaEstado.map((item, k) => (
+                  <option key={k} value={item.name}>
+                    {item.name}
+                  </option>
+                ))}
               </select>
-            </Col>
-          </form>
+
+              <button>Pesquisar</button>
+            </form>
+          </div>
         </Row>
       </Container>
     </SearchArea>

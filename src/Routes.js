@@ -1,21 +1,41 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import Home from "./Pages/Home";
 import Sobre from "./Pages/Sobre";
 import NotFound from "./components/NotFound";
-
+import Login from "./Pages/Login";
+import Cadastrar from "./Pages/Cadastrar";
+import AdPage from "./Pages/AdPage";
+import RouteHandlder from "./components/RouteHandler";
+import AddAd from "./Pages/AddAd";
+import Ads from "./Pages/Ads";
 export default function Routes() {
   return (
     <Switch>
-      <Route exact path="/">
+      <RouteHandlder exact path="/">
         <Home />
-      </Route>
-      <Route exact path="/sobre">
+      </RouteHandlder>
+      <RouteHandlder exact path="/sobre">
         <Sobre />
-      </Route>
-      <Route>
+      </RouteHandlder>
+      <RouteHandlder exact path="/login">
+        <Login />
+      </RouteHandlder>
+      <RouteHandlder exact path="/cadastrar">
+        <Cadastrar />
+      </RouteHandlder>
+      <RouteHandlder exact path="/ad/:id">
+        <AdPage />
+      </RouteHandlder>
+      <RouteHandlder private exact path="/post-an-ad">
+        <AddAd />
+      </RouteHandlder>
+      <RouteHandlder exact path="/ads">
+        <Ads />
+      </RouteHandlder>
+      <RouteHandlder>
         <NotFound />
-      </Route>
+      </RouteHandlder>
     </Switch>
   );
 }

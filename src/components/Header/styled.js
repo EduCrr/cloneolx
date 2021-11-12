@@ -18,26 +18,14 @@ export const HeaderArea = styled.header`
       ul {
         display: flex;
         align-items: center;
+        button {
+          text-decoration: none;
+          color: #292929;
+          background-color: transparent;
+          border: none;
+          font-weight: 500;
+        }
       }
-    }
-  }
-  .slider {
-    img {
-      width: 100%;
-      height: 85vh;
-      object-fit: cover;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-    .slick-next {
-      right: 0px;
-      margin: 0px 20px;
-    }
-    .slick-prev {
-      left: 0px;
-      z-index: 1000;
-      margin: 0px 20px;
     }
   }
 `;
